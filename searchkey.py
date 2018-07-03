@@ -40,7 +40,7 @@ class getserial():
                 else:
                     url = table.cell(j, 1).value
 
-                    r = requests.get(url, headers=self.headers)
+                    r = requests.get(url+'/page/3', headers=self.headers)
                     html = r.text
                     soup = BeautifulSoup(html, 'lxml')
                     i = 0
