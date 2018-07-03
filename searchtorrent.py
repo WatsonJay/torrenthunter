@@ -15,11 +15,11 @@ class getlink():
     def get_link(self, conf, excel,timerun):
         user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0'
         headers = {
-            'Accept': 'text/html,application/xhtml+xm…plication/xml;q=0.9,*/*;q=0.8',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
-            'Cache-Control': 'max-age=0',
-            'Connection': 'keep-alive',
+            'Accept':'text/css,*/*;q=0.1',
+            'Accept-Encoding':'gzip, deflate, sdch, br',
+            'Accept-Language':'zh-CN,zh;q=0.8',
+            'Cache-Control':'max-age=0',
+            'Connection':'keep-alive',
             'User-Agent': user_agent,
         }
         urlstart = 'https://btso.pw/'
@@ -48,7 +48,7 @@ class getlink():
                     r = requests.get(url, headers=headers, timeout=30)
                     html = r.text
                     # print html
-                    soup = BeautifulSoup(html)
+                    soup = BeautifulSoup(html,'lxml')
 
                     for tag in soup.find_all('div', class_='row'):
 
@@ -73,7 +73,7 @@ class getlink():
                                 print(tag1.string)
                                 wtable.write(p, 5, tag1.string)
                             p += 1
-                    cf.set("keynum", "endpart", p)
+                    cf.set('keynum', 'endpart', str(p))
                     cf.write(open(conf, "w"))
 
             except:
