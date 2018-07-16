@@ -10,7 +10,7 @@ try:  # python3
 except:  # python2
     import ConfigParser as configparser
 from bs4 import BeautifulSoup
-
+from free_proxyIP import proxyip
 
 class getserial():
 
@@ -39,8 +39,8 @@ class getserial():
                     continue
                 else:
                     url = table.cell(j, 1).value
-
-                    r = requests.get(url+'/page/3', headers=self.headers)
+                    IP = proxyip()
+                    r = requests.get(url+'/page/3', headers=self.headers, proxies=IP, timeout=3)
                     html = r.text
                     soup = BeautifulSoup(html, 'lxml')
                     i = 0

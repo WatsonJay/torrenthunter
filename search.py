@@ -3,6 +3,7 @@ import requests
 import re
 import xlwt
 from bs4 import BeautifulSoup
+from free_proxyIP import proxyip
 # 新建excel表格用于存储数据
 class geturl():
 
@@ -23,7 +24,8 @@ class geturl():
         rows = self.page * 50
         for p in range(1, self.page + 1):
             url = self.urlstart+'/actresses/page/' + str(p)
-            r = requests.get(url, headers=self.headers)
+            IP =proxyip()
+            r = requests.get(url, headers=self.headers, proxies=IP, timeout=3)
             html = r.text
 
             soup = BeautifulSoup(html,'lxml')
