@@ -39,7 +39,7 @@ class getserial():
                     continue
                 else:
                     url = table.cell(j, 1).value
-                    IP = proxyip()
+                    IP = {'http' : proxyip()}
                     r = requests.get(url+'/page/3', headers=self.headers, proxies=IP, timeout=3)
                     html = r.text
                     soup = BeautifulSoup(html, 'lxml')

@@ -24,7 +24,7 @@ class geturl():
         rows = self.page * 50
         for p in range(1, self.page + 1):
             url = self.urlstart+'/actresses/page/' + str(p)
-            IP =proxyip()
+            IP ={'http' : proxyip()}
             r = requests.get(url, headers=self.headers, proxies=IP, timeout=3)
             html = r.text
 

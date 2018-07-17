@@ -8,7 +8,7 @@ import threading
 from search import geturl
 from searchkey import getserial
 from searchtorrent import getlink
-
+from hebin import hebinxls
 class torrenthunter():
     def __init__(self):
         print('[INFO]:Japanese star（女优）torrent downloader...')
@@ -29,13 +29,32 @@ class torrenthunter():
         if int(star_num)>10:
             print('too large!')
         else:
-            # test = geturl(star_num)
-            # test.get_url()
-            # test.savestar(timerun)
-            # serial = getserial(timerun)
-            # serial.formatini()
-            # serial.threadstarted()
+            test = geturl(star_num)
+            test.get_url()
+            test.savestar(timerun)
+            serial = getserial(timerun)
+            serial.formatini()
+            serial.threadstarted()
             link = getlink()
             link.formatini()
-            link.get_link('liao.ini','20180627204823'+'serial.xls',timerun)
+            # link.get_link('liao.ini', '20180717091430' + 'serial.xls', timerun)
+            threads = []
+            t1 = threading.Thread(target=link.get_link, args=('link1.ini', '20180717091430' + 'serial.xls', timerun,1))
+            threads.append(t1)
+            t2 = threading.Thread(target=link.get_link, args=('link2.ini', '20180717091430' + 'serial.xls', timerun,2))
+            threads.append(t2)
+            t3 = threading.Thread(target=link.get_link, args=('link3.ini', '20180717091430' + 'serial.xls', timerun,3))
+            threads.append(t3)
+            t4 = threading.Thread(target=link.get_link, args=('link4.ini', '20180717091430' + 'serial.xls', timerun,4))
+            threads.append(t4)
+            t5 = threading.Thread(target=link.get_link, args=('link5.ini', '20180717091430' + 'serial.xls', timerun,5))
+            threads.append(t5)
+            for t in threads:
+                t.setDaemon(True)
+                t.start()
+            for t in threads:
+                t.join()
+            time.sleep(5)
+            hb = hebinxls()
+            hb.hebin(timerun)
             print(u"完成所有进程")
