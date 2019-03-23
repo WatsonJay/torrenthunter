@@ -13,7 +13,7 @@ class geturl():
         self.table = self.myfile.add_sheet(u"信息", cell_overwrite_ok=True)
         self.table.write(0, 0, u"名字")
         self.table.write(0, 1, u"链接")
-        self.urlstart = 'https://javlog.com/cn'
+        self.urlstart = 'https://javmoo.com/cn'
         user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
         self.headers = {
             'User-Agent': user_agent,
