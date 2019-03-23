@@ -54,7 +54,6 @@ class torrenthunter():
                 t.start()
             for t in threads:
                 t.join()
-            time.sleep(5)
             hb = hebinxls()
             hb.hebin(timerun)
             print(u"完成所有进程")
